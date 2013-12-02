@@ -5,7 +5,7 @@ set -e
 
 if ! rpm -q libcap-devel >/dev/null ; then
     yum -y upgrade
-    yum -y install bridge-utils libcap-devel libcgroup
+    yum -y install bridge-utils libcap-devel libcgroup graphviz
 fi
 
 for svc in cgconfig cgred; do
@@ -58,8 +58,8 @@ fi
 service network restart
 
 if [ ! -e /usr/local/bin/docker ]; then
-    # curl -o /usr/local/bin/docker https://get.docker.io/builds/Linux/x86_64/docker-latest 
-    cp /vagrant/docker-latest /usr/local/bin/docker
+    curl -o /usr/local/bin/docker https://get.docker.io/builds/Linux/x86_64/docker-latest 
+    #cp /vagrant/docker-latest /usr/local/bin/docker
     chmod +x /usr/local/bin/docker
 fi
 
